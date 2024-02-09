@@ -1,6 +1,6 @@
 package base.animal.data;
 
-public class Animal {
+public class Animal implements Comparable<Animal> {
     private int id;
     private String name;
     private String type;
@@ -113,5 +113,10 @@ public class Animal {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public int compareTo(Animal ani) {
+        return this.name.compareTo(ani.name);
     }
 }

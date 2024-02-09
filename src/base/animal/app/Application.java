@@ -1,6 +1,7 @@
 package base.animal.app;
 import base.animal.data.*;
 
+import java.util.Collection;
 import java.util.List;
 
 public class Application {
@@ -11,13 +12,11 @@ public class Application {
 
     private void start() {
         AnimalController controller = new AnimalController();
-        Animal testDyr1 = new Animal("Horsey the scared horse", 14);
-        Animal testDyr2 = new Animal("Lise", "Kat", "likes to sleep?",  27);
-        Animal testDyr3 = new Animal("Marcus", "Hund", "likes to eat", 1, true, false);
-        controller.createAnimal(testDyr1);
-        controller.createAnimal(testDyr2);
-        controller.createAnimal(testDyr3);
-        List<Animal> animals = controller.getAllAnimals();
+        InitData dataStarter = new InitData(controller);
+        dataStarter.startData();
+        List<Animal> animals = controller.getAllAnimalsSorted((a,b) -> a.getName().compareTo(b.getName));
+        //List<Animal> animals = controller.getAllAnimalsSorted(new AnimalNameComparator().reversed());
+        
         for (Animal ani : animals) {
             System.out.println(ani + "\n");
         }

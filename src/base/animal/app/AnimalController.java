@@ -2,10 +2,7 @@ package base.animal.app;
 import base.animal.data.*;
 
 import java.sql.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AnimalController {
     HashMap<Integer, Animal> animalMap = new HashMap<>();
@@ -14,20 +11,21 @@ public class AnimalController {
         Animal newAnimal = new Animal(recievedAnimal);
         newAnimal.setId(idCount);
         idCount++;
-        animalMap.put(idCount, newAnimal);
+        animalMap.put(newAnimal.getId(), newAnimal);
         return newAnimal;
     }
 
     public List<Animal> getAllAnimals() {
-        List<Animal> listOfAnimals = new ArrayList<>();
-        for (Map.Entry<Integer, Animal> entry : animalMap.entrySet() ) {
-            listOfAnimals.add(entry.getValue());
-        }
-        return listOfAnimals;
+        return new ArrayList<>(animalMap.values());
     }
 
+    public Collection<Animal> getAllAnimalsSorted() {
+       return new TreeSet<>(animalMap.values());
+    }
+    public List<Animal> getAllAnimalsSorted(Comparator comp) {
+        List<Animal> liste =  new ArrayList<>(animalMap.values());
+        liste.sort(comp);
+        return liste;
+    }
 
-//    public String toString() {
-//        return Animal.toString();
-//    }
 }
