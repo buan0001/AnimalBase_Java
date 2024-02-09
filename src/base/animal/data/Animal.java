@@ -1,3 +1,5 @@
+package base.animal.data;
+
 public class Animal {
     private int id;
     private String name;
@@ -12,13 +14,21 @@ public class Animal {
 
 
     public Animal(String name, String type, String description, int age, boolean star, boolean winner) {
-
         this.name = name;
         this.type = type;
         this.description = description;
         this.age = age;
         this.star = star;
         this.winner = winner;
+    }
+
+    public Animal(Animal otherAnimal) {
+        this.name = otherAnimal.name;
+        this.type = otherAnimal.type;
+        this.description = otherAnimal.description;
+        this.age = otherAnimal.age;
+        this.star = otherAnimal.star;
+        this.winner = otherAnimal.winner;
     }
 
     public Animal(String nameDescriptionTypeParts, int age) {
@@ -44,8 +54,11 @@ public class Animal {
     }
 
     public String toString() {
-        return "Name: " + name + "\nType: " + type + "\nDescription: " + description + "\nAge: " + age + "\nStar: " + star + "\nWinner: " + winner + "\n";
+        return "Id: " + id + "\nName: " + name + "\nType: " + type + "\nDescription: " + description + "\nAge: " + age + "\nStar: " + star + "\nWinner: " + winner + "\n";
     }
+
+
+
     public int getId() {
         return id;
     }
